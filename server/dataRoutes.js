@@ -38,13 +38,8 @@ router.get('/category/time', (req, res) => {
   q.clicksOverTimeBySingleCategory(req.query, res);
 });
 
-router.get('/test', (req, res) => {
-  res.send('success!')
-});
-
-router.get('/time', (req, res) => {
-  let now = new Date();
-  res.send(now);
+router.get('/state', (req, res) => {
+  q.listingsByState(res);
 });
 
 module.exports = router;

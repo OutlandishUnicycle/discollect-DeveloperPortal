@@ -43,6 +43,14 @@ const timeSeparations = {
       '22:00 - 24:00',
     ],
   },
+  week: {
+    time: (new Date(new Date() - 24 * 60 * 60 * 1000 * 7)),
+    split: (24 * 60 * 60 * 1000),
+    divisions: 7,
+    labels: [
+      '',
+    ],
+  },
   month: {
     time:(new Date(new Date() - 24 * 60 * 60 * 1000 * 30)),
     split: (24 * 60 * 15 * 1000 * 30),
@@ -266,18 +274,35 @@ module.exports = {
         output.push(a.length);
       }
       // build labels for chart
-      let labels = template.labels;
+      let labels = template.labels.reverse();
       let label = `${query.cat} over the last ${past}`;
+      output.reverse();
       res.send({data: output, labels, label, test: results.length});
-      // res.send(''+results.length);
     });
   },
 
-  listingsByZip: (res) => {
-    Listings.findAll({
-      attributes: {
-
-      }
+  listingsByState: (res) => {
+    const prevMonth = new Date(new Date() - 24 * 60 * 60 * 1000 * 30);
+    Clicks.findAll({
+      where: {
+        createdAt: {
+          $lt: new Date(),
+          $gt: prevMonth,
+        },
+      },
+    })
+    .then((results) => {
+      let byState = results.reduce((all, item) => {
+        if (item.state === null) {
+          return all;
+        } else if (all[item.state]) {
+          all[item.state]++;
+        } else {
+          all[item.state] = 1;
+        }
+        return all;
+      }, {})
+      res.send(byState);
     })
   }
 };

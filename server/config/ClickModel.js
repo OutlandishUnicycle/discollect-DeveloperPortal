@@ -8,6 +8,7 @@ const User = require('./UserModel.js');
 var clickModel = db.define('item_clicks', {
   userId: Sequelize.INTEGER,
   listingId: Sequelize.INTEGER,
+  state: Sequelize.STRING,
 });
 
 clickModel.belongsTo(User, {foreignKey: 'userId', targetKey: 'id'});
