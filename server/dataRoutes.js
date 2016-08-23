@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const q = require('./apiQueries/basicQueries.js');
+const t = require('./apiQueries/test.js');
 
 router.get('/user', (req, res) => {
   let userId = req.query.userId;
@@ -40,6 +41,10 @@ router.get('/category/time', (req, res) => {
 
 router.get('/state', (req, res) => {
   q.listingsByState(res);
+});
+
+router.get('/test', (req, res) => {
+  t.dates(res);
 });
 
 module.exports = router;
