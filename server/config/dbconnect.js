@@ -12,6 +12,7 @@ if (secrets.dbpassword) {
   dbpassword = secrets.dbpassword;
   host = secrets.mysql.host;
   port = secrets.mysql.port;
+  timezone: '-07:00',
 }
 
 const db = new Sequelize('discollectDB', 'jordan', dbpassword, {

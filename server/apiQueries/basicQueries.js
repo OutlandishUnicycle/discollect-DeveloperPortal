@@ -262,8 +262,8 @@ module.exports = {
     })
     .then((results) => {
       let template = timeSeparations[past];
-      let now = new Date();
       let output = [];
+      let now = new Date();
       for (let i=1; i <= template.divisions; i++) {
         let a = results.filter((item) => {
           let tempDate = new Date(item.createdAt);
@@ -274,10 +274,10 @@ module.exports = {
         output.push(a.length);
       }
       // build labels for chart
-      let labels = template.labels.reverse();
+      let labels = template.labels;
       let label = `${query.cat} over the last ${past}`;
       output.reverse();
-      res.send({data: output, labels, label, test: results.length});
+      res.send({data: output, labels: labels.reverse(), label, test: results.length});
     });
   },
 
