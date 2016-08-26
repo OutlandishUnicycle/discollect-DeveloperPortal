@@ -112,11 +112,11 @@ Response:
     }
   } ...
 
-###/all/listings
-Receive list of all Listings
+###/state
+Receive list of all Listings, ordered by state
 ####SAMPLE:
 GET request:
-/api/YOUR_API_KEY_HERE/all/listings
+/api/YOUR_API_KEY_HERE/all/state?state=CA
 
 Response:
 [
@@ -127,6 +127,32 @@ Response:
     "createdAt": "2016-08-17T22:45:40.000Z",
     "zipcode": 19525
   }, ...
+
+###/user/category
+Send in your userId and receive back an object sorted by categories
+####SAMPLE:
+GET request:
+/api/YOUR_API_KEY_HERE/user/category?userId=0
+
+Response:
+{
+  "appliances": [
+    {
+      "id": 33,
+      "title": "Kitchen Sink",
+      "category": "appliances",
+      "createdAt": "2016-08-17T22:45:40.000Z",
+      "zipcode": 19525
+    },
+    {
+      "id": 31,
+      "title": "Older Grapes",
+      "category": "appliances",
+      "createdAt": "2016-08-17T18:33:04.000Z",
+      "zipcode": 94102
+    }
+  ],
+  "fashion": [] ...
 
 ###/time/category
 Receive list of all Listings from given categories over given timeframe

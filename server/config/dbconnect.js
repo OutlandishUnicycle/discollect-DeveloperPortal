@@ -7,7 +7,6 @@ const secrets = {};
 let dbpassword = process.env.dbpassword;
 let host = process.env.host;
 let port = process.env.port;
-;
 
 if (secrets.dbpassword) {
   dbpassword = secrets.dbpassword;
